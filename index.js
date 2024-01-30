@@ -6,8 +6,12 @@ app.use(express.json())
 // const port = 3002
 
 app.get('/',async(req,res)=>{
-    const ex = await Expences.find()
-    res.send(ex)
+    try{
+            const ex = await Expences.find();
+            res.send(ex);
+    }catch{
+        res.end(err);
+    }
 })
 app.delete("/expences/:id",async(req,res)=>{
     try{
